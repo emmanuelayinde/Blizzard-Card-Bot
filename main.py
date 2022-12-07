@@ -8,12 +8,6 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from utils.date import now
 from utils.cardbacks import scrape as cardbacks_scrapper
-from utils.macenaries import scrape as macenaries_scrapper
-from utils.battlegrounds import scrape as battlegrounds_scrapper
-from utils.cards import scrape as cards_scrapper
-from utils.pil_bg import convert_bg
-
-
 
 # CONFIG FOR PRODUCTION ENV
 chrome_options = webdriver.ChromeOptions()
@@ -30,25 +24,6 @@ chrome_options.add_experimental_option('useAutomationExtension', False)
 # driver = webdriver.Chrome(service=Service(chromedriver_autoinstaller.install()), options=chrome_options)         
 
 
-while True:
-    print('Scraping 1...........................', now())
-    macenaries_scrapper(webdriver, Service, chrome_options, WebDriverWait, By, EC)
-    time.sleep(5)
-
-
-# print('Scraping 2...........................', now())
-# cardbacks_scrapper(webdriver, Service, chrome_options, WebDriverWait, By, EC)
-# time.sleep(5)
-
-
-# print('Scraping 3...........................', now())
-# battlegrounds_scrapper(webdriver, Service, chrome_options, WebDriverWait, By, EC)
-# time.sleep(5)
-
-
-# print('Scraping 4...........................', now())
-# cards_scrapper(webdriver, Service, chrome_options, WebDriverWait, By, EC)
-
-# convert_bg()    
-
+print('Scraping in progress...........................', now())
+cardbacks_scrapper(webdriver, Service, chrome_options, WebDriverWait, By, EC)
 
