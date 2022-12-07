@@ -31,13 +31,10 @@ def scrape(webdriver, Service, chrome_options, WebDriverWait, By, EC):
  
     for card in all_cards_link:
         tweeted = False
-        print('a.href', card.get_attribute('href'))
-        print('pat', path)
         with open(path +"/data/cardbacks.txt") as f:
-            for line in f:
-                if line.strip() == card.get_attribute('href'):
-                    tweeted = True
-                    break
+            if card.get_attribute('href') in f.read():
+                tweeted = True
+                break
         if tweeted:
             continue  
         else: 
@@ -56,10 +53,6 @@ def scrape(webdriver, Service, chrome_options, WebDriverWait, By, EC):
 
 
 def scrape_card_info(driver, By, url):
-    # base_url = 'https://hearthstone.blizzard.com/'
-    # if base_url not in url.get_attribute('href'): 
-    #     return print('Items not the regular item')
-
     card_link = url.get_attribute('href')
     driver.get(card_link)
 
@@ -84,7 +77,7 @@ def scrape_card_info(driver, By, url):
     print(text)
 
     # UPLOAD TO TWITTER
-    # tweet(text, card_img)
+    tweet(text, card_img)
 
     print('done..............', now())    
     print('Closing.........................')
