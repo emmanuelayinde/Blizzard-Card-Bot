@@ -23,18 +23,15 @@ def scrape(webdriver, Service, chrome_options, WebDriverWait, By, EC):
 
     url = None
 
-    all_cards_link = wait.until(EC.visibility_of_all_elements_located((By.XPATH, "//div[@id='MainCardGrid']/div/div[2]/a")))    #CardbackGridLayout__CardGroupCards-tma7ks-2 gBxxwY
-    # all_cards_link = main_cards_container.find_elements(By.XPATH, "//div/div[2]/a")
+    all_cards_link = wait.until(EC.visibility_of_all_elements_located((By.XPATH, "//div[@id='MainCardGrid']/div/div[2]/a"))) 
 
     print("cards.....", len(all_cards_link))
-    
  
     for card in all_cards_link:
         tweeted = False
         with open(path +"/data/cardbacks.txt") as f:
             if card.get_attribute('href') in f.read():
                 tweeted = True
-                break
         if tweeted:
             continue  
         else: 

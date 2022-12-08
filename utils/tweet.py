@@ -1,8 +1,7 @@
 import os
-import requests
 import tweepy
 from dotenv import load_dotenv
-from convert_img import convert_bg
+from utils.convert_img import convert_bg
 
 from utils.date import now
 
@@ -34,6 +33,7 @@ def tweet(tweet, media = None):
 def tweet_image(url, message):
     file = convert_bg(url)
     media_file = client.media_upload(filename = file)
+    print('File PN', media_file.media_id_string)
     response = client.update_status(status = message, media_ids = [media_file.media_id_string])
     print('Tweeted.................................', now())
     os.remove(file)
