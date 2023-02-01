@@ -5,7 +5,8 @@ from utils.request_url import download_url
 
 path = os.getcwd()
 # Back Image
-bg = 'bg.jpeg'
+# bg = 'bg.jpeg'
+bg = 'bg.png'
 
 
 def convert_bg(card_url):
